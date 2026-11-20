@@ -1,0 +1,42 @@
+IDEA VAULT - PAID / PREMIUM TOOLS AND SERVICES
+==============================================
+Prepared by : Ayesha Shafiq (F25CSC068), Saveez Ali (F25CSC020)
+Course      : Software Engineering
+Instructor  : Sir Umer
+
+Summary
+-------
+The Idea Vault application does NOT use any paid or premium API, platform,
+hosting or service. Every tool, library and runtime needed to install, run
+and test it is free and open source (see docs/Tools_and_Technologies/).
+
+One premium service was used during DEVELOPMENT (not needed to run the app):
+
+
+1. Claude (Anthropic): AI assistant                      [PAID / PREMIUM]
+   ----------------------------------------------------------------------
+   Type of service : AI assistant (subscription plan, e.g. Claude Pro)
+   Official link   : https://claude.ai
+   Pricing page    : https://claude.com/pricing
+   Used for        : Help with writing and reviewing source code, tests,
+                     README, SRS document and diagrams.
+   Project link    : This repository (Idea Vault). The link is submitted on the LMS.
+   Runtime impact  : None. The application does not call any AI API and
+                     needs no API key.
+
+
+FREE tools (listed for completeness, NOT paid)
+----------------------------------------------
+- Node.js        : https://nodejs.org            (free, open source)
+- npm            : https://www.npmjs.com          (free)
+- Express        : https://expressjs.com          (free, MIT license)
+- Git            : https://git-scm.com            (free, open source)
+- GitHub         : https://github.com             (free plan used)
+- VS Code        : https://code.visualstudio.com  (free)
+- Google Chrome  : https://www.google.com/chrome  (free)
+- Mermaid        : https://mermaid.js.org         (free, MIT license)
+- Playwright     : https://playwright.dev         (free, Apache-2.0)
+- Three.js       : https://threejs.org            (free, MIT license)
+- esbuild        : https://esbuild.github.io      (free, MIT license)
+
+No passwords, API keys or access tokens are stored in this repository.

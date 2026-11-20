@@ -1,0 +1,35 @@
+{
+  "name": "idea-vault",
+  "version": "1.0.0",
+  "description": "Idea Vault - capture random ideas and connect them Zettelkasten-style",
+  "main": "src/server.js",
+  "directories": {
+    "doc": "docs",
+    "test": "tests"
+  },
+  "scripts": {
+    "start": "node src/server.js",
+    "dev": "node --watch src/server.js",
+    "seed": "node src/seed.js",
+    "test": "node --test",
+    "build:scene": "esbuild client/scene.js --bundle --minify --format=iife --target=es2019 --legal-comments=eof --outfile=public/scene.js"
+  },
+  "keywords": [
+    "zettelkasten",
+    "ideas",
+    "notes",
+    "creativity"
+  ],
+  "author": "Ayesha Shafiq (F25CSC068), Saveez Ali (F25CSC020)",
+  "license": "MIT",
+  "dependencies": {
+    "express": "^4.22.3"
+  },
+  "engines": {
+    "node": ">=20"
+  },
+  "devDependencies": {
+    "esbuild": "^0.28.2",
+    "three": "^0.186.1"
+  }
+}
