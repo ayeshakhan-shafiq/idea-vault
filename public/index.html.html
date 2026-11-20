@@ -1,0 +1,286 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="theme-color" content="#2A2438">
+  <title>Idea Vault</title>
+  <link rel="icon" href="favicon.svg" type="image/svg+xml">
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <!-- Shared SVG: Vaulty the mascot (an original lightbulb robot) and icons -->
+  <svg class="sprites" aria-hidden="true" focusable="false">
+    <defs>
+      <radialGradient id="g-bulb" cx="38%" cy="30%" r="75%">
+        <stop offset="0" stop-color="#ffffff"/>
+        <stop offset=".55" stop-color="#EFECF6"/>
+        <stop offset="1" stop-color="#C6BCDF"/>
+      </radialGradient>
+      <radialGradient id="g-glow" cx="50%" cy="50%" r="50%">
+        <stop offset="0" stop-color="#fff6c2" stop-opacity=".95"/>
+        <stop offset="1" stop-color="#fff6c2" stop-opacity="0"/>
+      </radialGradient>
+      <linearGradient id="g-metal" x1="0" x2="1">
+        <stop offset="0" stop-color="#6F6492"/>
+        <stop offset=".5" stop-color="#C3B9E3"/>
+        <stop offset="1" stop-color="#5F5585"/>
+      </linearGradient>
+      <linearGradient id="g-visor" x1="0" y1="0" x2="0" y2="1">
+        <stop offset="0" stop-color="#2E2742"/>
+        <stop offset="1" stop-color="#15101F"/>
+      </linearGradient>
+      <symbol id="vaulty" viewBox="0 0 200 240">
+        <ellipse cx="100" cy="230" rx="52" ry="8" fill="#0b5394" opacity=".14"/>
+        <circle cx="100" cy="88" r="92" fill="url(#g-glow)"><animate attributeName="r" values="86;98;86" dur="3s" repeatCount="indefinite"/></circle>
+        <path d="M100 4l5 11 12 2-9 8 2 12-10-6-10 6 2-12-9-8 12-2z" fill="#ffd34d"><animate attributeName="opacity" values="1;.45;1" dur="2.2s" repeatCount="indefinite"/><animateTransform attributeName="transform" type="rotate" values="-12 100 20;12 100 20;-12 100 20" dur="2.2s" repeatCount="indefinite"/></path>
+        <circle cx="30" cy="128" r="13" fill="url(#g-bulb)" stroke="#B3A9CF" stroke-width="2"/>
+        <circle cx="170" cy="120" r="13" fill="url(#g-bulb)" stroke="#B3A9CF" stroke-width="2"><animateTransform attributeName="transform" type="translate" values="0 0;5 -14;0 -4;5 -14;0 0;0 0" keyTimes="0;.12;.24;.36;.48;1" dur="3.5s" repeatCount="indefinite"/></circle>
+        <path d="M100 22a68 68 0 0 1 40 123l-10 27H70l-10-27A68 68 0 0 1 100 22z" fill="url(#g-bulb)" stroke="#B3A9CF" stroke-width="2"/>
+        <ellipse cx="72" cy="50" rx="20" ry="11" fill="#fff" opacity=".85" transform="rotate(-30 72 50)"/>
+        <rect x="48" y="64" width="104" height="62" rx="31" fill="url(#g-visor)"/>
+        <rect x="58" y="70" width="40" height="8" rx="4" fill="#fff" opacity=".12"/>
+        <path d="M70 99q10-13 20 0M110 99q10-13 20 0" fill="none" stroke="#E6DCFF" stroke-width="7" stroke-linecap="round"><animate attributeName="d" values="M70 99q10-13 20 0M110 99q10-13 20 0;M70 99q10-13 20 0M110 99q10-13 20 0;M70 95q10 0 20 0M110 95q10 0 20 0;M70 99q10-13 20 0M110 99q10-13 20 0" keyTimes="0;.9;.95;1" dur="4s" repeatCount="indefinite"/></path>
+        <path d="M92 110q8 7 16 0" fill="none" stroke="#E6DCFF" stroke-width="4" stroke-linecap="round"><animate attributeName="d" values="M92 110q8 7 16 0;M90 109q10 10 20 0;M92 110q8 7 16 0" dur="3.5s" repeatCount="indefinite"/></path>
+        <circle cx="58" cy="136" r="7" fill="#ff9fb8" opacity=".55"/>
+        <circle cx="142" cy="136" r="7" fill="#ff9fb8" opacity=".55"/>
+        <rect x="68" y="170" width="64" height="13" rx="6.5" fill="url(#g-metal)"/>
+        <rect x="72" y="185" width="56" height="12" rx="6" fill="url(#g-metal)"/>
+        <rect x="82" y="199" width="36" height="12" rx="6" fill="#4A3F6B"/>
+      </symbol>
+      <symbol id="i-content" viewBox="0 0 24 24"><rect x="3" y="5" width="18" height="14" rx="3" fill="none" stroke="currentColor" stroke-width="2"/><path d="M10 9.5v5l4.5-2.5z" fill="currentColor"/></symbol>
+      <symbol id="i-business" viewBox="0 0 24 24"><rect x="3" y="7" width="18" height="13" rx="2.5" fill="none" stroke="currentColor" stroke-width="2"/><path d="M9 7V5a1.5 1.5 0 0 1 1.5-1.5h3A1.5 1.5 0 0 1 15 5v2M3 12h18" fill="none" stroke="currentColor" stroke-width="2"/></symbol>
+      <symbol id="i-writing" viewBox="0 0 24 24"><path d="M4 20l1-5L15.5 4.5a2.1 2.1 0 0 1 3 3L8 18zM13.5 6.5l3 3" fill="none" stroke="currentColor" stroke-width="2" stroke-linejoin="round"/></symbol>
+      <symbol id="i-story" viewBox="0 0 24 24"><path d="M4 5.5A2.5 2.5 0 0 1 6.5 3H20v15H6.5A2.5 2.5 0 0 0 4 20.5zM4 20.5A2.5 2.5 0 0 0 6.5 21H20" fill="none" stroke="currentColor" stroke-width="2" stroke-linejoin="round"/></symbol>
+      <symbol id="i-product" viewBox="0 0 24 24"><path d="M12 3l8 4.5v9L12 21l-8-4.5v-9zM4 7.5l8 4.5 8-4.5M12 12v9" fill="none" stroke="currentColor" stroke-width="2" stroke-linejoin="round"/></symbol>
+      <symbol id="i-personal" viewBox="0 0 24 24"><path d="M12 20s-7.5-4.6-7.5-10A4.3 4.3 0 0 1 12 7.3 4.3 4.3 0 0 1 19.5 10c0 5.4-7.5 10-7.5 10z" fill="none" stroke="currentColor" stroke-width="2" stroke-linejoin="round"/></symbol>
+      <symbol id="i-home" viewBox="0 0 24 24"><path d="M4 11l8-7 8 7v8.5a1.5 1.5 0 0 1-1.5 1.5H15v-6H9v6H5.5A1.5 1.5 0 0 1 4 19.5z" fill="currentColor"/></symbol>
+      <symbol id="i-list" viewBox="0 0 24 24"><path d="M8 6h12M8 12h12M8 18h12" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"/><circle cx="4" cy="6" r="1.5" fill="currentColor"/><circle cx="4" cy="12" r="1.5" fill="currentColor"/><circle cx="4" cy="18" r="1.5" fill="currentColor"/></symbol>
+      <symbol id="i-graph" viewBox="0 0 24 24"><circle cx="6" cy="7" r="2.6" fill="currentColor"/><circle cx="18" cy="6" r="2.6" fill="currentColor"/><circle cx="12" cy="18" r="2.6" fill="currentColor"/><path d="M6 7l12-1M6 7l6 11M18 6l-6 12" stroke="currentColor" stroke-width="1.7"/></symbol>
+      <symbol id="i-user" viewBox="0 0 24 24"><circle cx="12" cy="8" r="4" fill="currentColor"/><path d="M4 21a8 8 0 0 1 16 0z" fill="currentColor"/></symbol>
+      <symbol id="i-plus" viewBox="0 0 24 24"><path d="M12 5v14M5 12h14" stroke="currentColor" stroke-width="2.6" stroke-linecap="round"/></symbol>
+      <symbol id="i-back" viewBox="0 0 24 24"><path d="M15 5l-7 7 7 7" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/></symbol>
+      <symbol id="i-send" viewBox="0 0 24 24"><path d="M4 12l16-8-6 16-2.5-6.5z" fill="currentColor"/></symbol>
+      <symbol id="i-spark" viewBox="0 0 24 24"><path d="M12 2l2.2 6.3L20.5 10l-6.3 2.2L12 18.5l-2.2-6.3L3.5 10l6.3-1.7zM19 16l.9 2.1L22 19l-2.1.9L19 22l-.9-2.1L16 19l2.1-.9z" fill="currentColor"/></symbol>
+      <symbol id="i-dice" viewBox="0 0 24 24"><rect x="3.5" y="3.5" width="17" height="17" rx="4" fill="none" stroke="currentColor" stroke-width="2"/><circle cx="8.5" cy="8.5" r="1.5" fill="currentColor"/><circle cx="15.5" cy="15.5" r="1.5" fill="currentColor"/><circle cx="12" cy="12" r="1.5" fill="currentColor"/></symbol>
+      <symbol id="i-search" viewBox="0 0 24 24"><circle cx="11" cy="11" r="6.5" fill="none" stroke="currentColor" stroke-width="2.2"/><path d="M16 16l4.5 4.5" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"/></symbol>
+      <symbol id="i-pin" viewBox="0 0 24 24"><path d="M9 3h6l-1 6 4 4H6l4-4zM12 13v8" fill="none" stroke="currentColor" stroke-width="2" stroke-linejoin="round" stroke-linecap="round"/></symbol>
+      <symbol id="i-trash" viewBox="0 0 24 24"><path d="M4 7h16M9 7V4.5h6V7M6.5 7l1 13h9l1-13" fill="none" stroke="currentColor" stroke-width="2" stroke-linejoin="round" stroke-linecap="round"/></symbol>
+      <symbol id="i-link" viewBox="0 0 24 24"><path d="M10 14a4 4 0 0 0 5.7 0l3-3a4 4 0 0 0-5.7-5.7l-1 1M14 10a4 4 0 0 0-5.7 0l-3 3a4 4 0 0 0 5.7 5.7l1-1" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></symbol>
+    </defs>
+  </svg>
+
+  <!-- Cinematic 3D intro + living background (public/scene.js, built from client/scene.js) -->
+  <canvas id="scene" class="scene" aria-hidden="true"></canvas>
+  <div class="dof" aria-hidden="true"></div>
+  <div class="veil" aria-hidden="true"></div>
+  <div class="intro-title" id="intro-title" hidden>
+    <h1 id="intro-word">Idea Vault</h1>
+    <p>Capture <span>+</span> Connect</p>
+  </div>
+  <button class="intro-skip" id="intro-skip" type="button" hidden>Skip intro</button>
+  <div class="aurora" aria-hidden="true"><i class="o1"></i><i class="o2"></i><i class="o3"></i><i class="o4"></i></div>
+  <div class="stage">
+    <section class="pitch" aria-hidden="true">
+      <p class="pitch-kicker">Creativity · Zettelkasten</p>
+      <h1>Never lose a <span>random idea</span> again.</h1>
+      <p>Idea Vault helps creators, entrepreneurs and writers capture ideas in seconds, then connect them into something bigger.</p>
+      <ul>
+        <li><svg><use href="#i-plus"/></svg> Capture in one tap</li>
+        <li><svg><use href="#i-link"/></svg> Link ideas with <code>[[wikilinks]]</code></li>
+        <li><svg><use href="#i-spark"/></svg> Spark new combinations</li>
+        <li><svg><use href="#i-graph"/></svg> See your idea network</li>
+      </ul>
+    </section>
+
+    <div class="phone-wrap">
+    <div class="float-badge fb1" aria-hidden="true"><span class="fb-ico green"><svg><use href="#i-plus"/></svg></span><span><b>Idea captured</b><small>Filed under Business</small></span></div>
+    <div class="float-badge fb2" aria-hidden="true"><span class="fb-ico blue"><svg><use href="#i-link"/></svg></span><span><b>3 connections</b><small>Ideas compound</small></span></div>
+    <div class="float-badge fb3" aria-hidden="true"><span class="fb-ico orange"><svg><use href="#i-spark"/></svg></span><span><b>New spark!</b><small>Podcast × Newsletter</small></span></div>
+    <div class="phone" id="phone">
+      <div class="island" aria-hidden="true"></div>
+      <main class="screens">
+
+        <!-- 1. Welcome -->
+        <section class="screen" id="s-welcome" data-tabbar="off">
+          <div class="welcome-art">
+            <span class="bubble b1"></span><span class="bubble b2"></span><span class="bubble b3"></span><span class="bubble b4"></span><span class="bubble b5"></span>
+            <svg class="mascot float" viewBox="0 0 200 240" role="img" aria-label="Vaulty, the Idea Vault mascot"><use href="#vaulty"/></svg>
+          </div>
+          <div class="dots" aria-hidden="true"><i></i><i></i><i class="on"></i></div>
+          <h1 class="welcome-title">Your Personal <span>Idea</span> Vault</h1>
+          <p class="welcome-sub">Catch random ideas before they vanish, and connect them into something bigger.</p>
+          <form id="welcome-form" class="welcome-form" autocomplete="off">
+            <input id="welcome-name" type="text" maxlength="30" placeholder="What should we call you?" aria-label="Your name">
+            <button class="btn-gradient" type="submit">Get Started</button>
+          </form>
+        </section>
+
+        <!-- 2. Home -->
+        <section class="screen" id="s-home">
+          <header class="home-head">
+            <div class="avatar" id="home-avatar">I</div>
+            <div class="hello">
+              <small id="home-greeting">Hey, good morning!</small>
+              <strong id="home-name">Creator</strong>
+            </div>
+            <button class="icon-btn" id="home-surprise" aria-label="Surprise me"><svg><use href="#i-dice"/></svg></button>
+          </header>
+
+          <button class="hero-card" id="hero-new" type="button">
+            <span class="hero-dots" aria-hidden="true"></span>
+            <svg class="mascot float" viewBox="0 0 200 240" aria-hidden="true"><use href="#vaulty"/></svg>
+            <strong>New Idea <svg class="spark-ico"><use href="#i-spark"/></svg></strong>
+            <small>Capture it before it's gone</small>
+          </button>
+
+          <div class="duo">
+            <button class="duo-btn" id="home-spark" type="button">
+              <span class="duo-ico blue"><svg><use href="#i-spark"/></svg></span>
+              <span><strong>Spark</strong><small>Combine 2 ideas</small></span>
+            </button>
+            <button class="duo-btn" id="home-random" type="button">
+              <span class="duo-ico orange"><svg><use href="#i-dice"/></svg></span>
+              <span><strong>Surprise</strong><small>Find a lost idea</small></span>
+            </button>
+          </div>
+
+          <div class="stats-row" id="stats-row"></div>
+
+          <h3 class="section-title">Categories</h3>
+          <div class="cat-grid" id="cat-grid"></div>
+
+          <div class="section-row">
+            <h3 class="section-title">Recent ideas</h3>
+            <button class="link-btn" id="see-all" type="button">See all</button>
+          </div>
+          <ul class="idea-cards" id="recent-list"></ul>
+        </section>
+
+        <!-- 3. Capture (chat style) -->
+        <section class="screen" id="s-capture" data-tabbar="off">
+          <header class="topbar">
+            <button class="icon-btn ghost" data-back aria-label="Back"><svg><use href="#i-back"/></svg></button>
+            <h2>New Idea</h2>
+            <span class="spacer"></span>
+          </header>
+          <div class="capture-body" id="capture-body">
+            <div class="capture-intro" id="capture-intro">
+              <svg class="mascot float" viewBox="0 0 200 240" aria-hidden="true"><use href="#vaulty"/></svg>
+              <h2>What's on your mind today?</h2>
+              <div class="prompt-grid" id="prompt-grid"></div>
+            </div>
+            <div class="thread" id="thread" aria-live="polite"></div>
+          </div>
+          <form class="composer" id="composer" autocomplete="off">
+            <select id="composer-cat" aria-label="Category"></select>
+            <input id="composer-input" type="text" maxlength="500" placeholder="Type your idea…" aria-label="Your idea">
+            <button class="send" type="submit" aria-label="Save idea"><svg><use href="#i-send"/></svg></button>
+          </form>
+        </section>
+
+        <!-- 4. Ideas library -->
+        <section class="screen" id="s-ideas">
+          <header class="topbar"><h2>My Ideas</h2><span class="count-pill" id="ideas-count">0</span></header>
+          <label class="search"><svg><use href="#i-search"/></svg><input id="search" type="search" placeholder="Search your ideas" aria-label="Search ideas"></label>
+          <div class="chip-row" id="cat-chips"></div>
+          <div class="seg" id="type-seg" role="tablist">
+            <button class="on" data-type="">All</button><button data-type="fleeting">Fleeting</button><button data-type="literature">Literature</button><button data-type="permanent">Permanent</button>
+          </div>
+          <ul class="idea-cards" id="idea-list"></ul>
+        </section>
+
+        <!-- 5. Idea detail -->
+        <section class="screen" id="s-detail" data-tabbar="off">
+          <header class="topbar">
+            <button class="icon-btn ghost" data-back aria-label="Back"><svg><use href="#i-back"/></svg></button>
+            <h2>Idea</h2>
+            <span class="spacer"></span>
+            <button class="icon-btn ghost" id="btn-pin" aria-label="Pin idea"><svg><use href="#i-pin"/></svg></button>
+            <button class="icon-btn ghost danger" id="btn-delete" aria-label="Delete idea"><svg><use href="#i-trash"/></svg></button>
+          </header>
+          <form id="idea-form" class="detail" autocomplete="off">
+            <textarea id="f-title" class="title-input" rows="1" maxlength="200" aria-label="Title" required></textarea>
+            <div class="meta-row">
+              <select id="f-cat" aria-label="Category"></select>
+              <div class="seg small" id="f-type">
+                <button type="button" data-type="fleeting">Fleeting</button><button type="button" data-type="literature">Literature</button><button type="button" data-type="permanent">Permanent</button>
+              </div>
+            </div>
+            <input id="f-tags" class="soft-input" type="text" placeholder="Extra tags (comma separated)" aria-label="Extra tags">
+            <input id="f-source" class="soft-input" type="text" maxlength="500" placeholder="Source: book, link or person (optional)" aria-label="Source">
+            <div class="seg small" id="body-tabs">
+              <button type="button" class="on" data-tab="write">Write</button><button type="button" data-tab="preview">Preview</button>
+            </div>
+            <div class="body-wrap">
+              <textarea id="f-body" maxlength="20000" placeholder="Develop your idea… Type [[ to link another idea."></textarea>
+              <ul id="link-suggest" class="link-suggest" hidden></ul>
+              <div id="preview" class="preview" hidden></div>
+            </div>
+            <p class="save-line"><span id="save-status"></span><span id="dates"></span></p>
+          </form>
+          <div class="conn">
+            <h3 class="section-title"><svg><use href="#i-link"/></svg> Linked ideas</h3>
+            <ul id="outgoing" class="conn-list"></ul>
+            <h3 class="section-title">Backlinks</h3>
+            <ul id="backlinks" class="conn-list"></ul>
+            <h3 class="section-title"><svg><use href="#i-spark"/></svg> Suggested connections</h3>
+            <ul id="suggestions" class="conn-list"></ul>
+          </div>
+        </section>
+
+        <!-- 6. Connect (graph) -->
+        <section class="screen" id="s-connect">
+          <header class="topbar"><h2>Connect</h2></header>
+          <p class="screen-sub">Every dot is an idea. Every line is a link. Tap a dot to open it.</p>
+          <div class="graph-card"><canvas id="graph-canvas"></canvas></div>
+          <div class="legend"><span><i class="dot fleeting"></i>Fleeting</span><span><i class="dot literature"></i>Literature</span><span><i class="dot permanent"></i>Permanent</span></div>
+          <button class="btn-gradient" id="connect-spark" type="button"><svg><use href="#i-spark"/></svg> Spark a new connection</button>
+        </section>
+
+        <!-- 7. Profile -->
+        <section class="screen" id="s-profile">
+          <header class="topbar"><h2>Profile</h2></header>
+          <div class="profile-card">
+            <div class="avatar big" id="profile-avatar">I</div>
+            <label class="profile-name">Your name<input id="profile-name" type="text" maxlength="30"></label>
+          </div>
+          <div class="stats-row" id="profile-stats"></div>
+          <div class="menu">
+            <button type="button" id="btn-export"><svg><use href="#i-send"/></svg><span><strong>Export vault</strong><small>Download all ideas as a JSON backup</small></span></button>
+            <label class="menu-item"><svg><use href="#i-plus"/></svg><span><strong>Import vault</strong><small>Restore ideas from a JSON backup</small></span><input type="file" id="import-file" accept="application/json,.json" hidden></label>
+            <button type="button" id="btn-welcome"><svg><use href="#i-home"/></svg><span><strong>Show welcome screen</strong><small>See the intro again</small></span></button>
+          </div>
+          <p class="about">Idea Vault v2.0 · Capture + Connect (Zettelkasten)</p>
+        </section>
+      </main>
+
+      <nav class="tabbar" id="tabbar" aria-label="Main">
+        <span class="tab-ind" id="tab-ind" aria-hidden="true"></span>
+        <button data-go="home" class="on"><svg><use href="#i-home"/></svg><span>Home</span></button>
+        <button data-go="ideas"><svg><use href="#i-list"/></svg><span>Ideas</span></button>
+        <button class="fab" data-go="capture" aria-label="New idea"><svg><use href="#i-plus"/></svg></button>
+        <button data-go="connect"><svg><use href="#i-graph"/></svg><span>Connect</span></button>
+        <button data-go="profile"><svg><use href="#i-user"/></svg><span>Profile</span></button>
+      </nav>
+
+      <!-- Bottom sheet (Spark, confirmations) -->
+      <div class="sheet-backdrop" id="sheet" hidden>
+        <div class="sheet" role="dialog" aria-modal="true" aria-labelledby="sheet-title">
+          <span class="grabber" aria-hidden="true"></span>
+          <div id="sheet-content"></div>
+        </div>
+      </div>
+      <div id="toast" class="toast" role="status" hidden></div>
+      <div class="glare" aria-hidden="true"></div>
+    </div>
+    </div>
+  </div>
+
+  <script src="markdown.js"></script>
+  <script src="graph.js"></script>
+  <script src="app.js"></script>
+  <script src="motion.js"></script>
+  <script src="scene.js"></script>
+</body>
+</html>
