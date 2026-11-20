@@ -1,0 +1,27 @@
+flowchart TB
+    subgraph Client["Browser (Client tier)"]
+        UI["index.html + styles.css<br/>mobile screens, SVG mascot"]
+        APPJS["app.js<br/>screens, navigation, autosave, capture chat, Spark"]
+        MD["markdown.js<br/>safe Markdown + wikilinks"]
+        GR["graph.js<br/>canvas force-directed graph"]
+        MO["motion.js<br/>3D phone tilt, ripples, tab indicator"]
+        SC["scene.js (Three.js / WebGL)<br/>cinematic 3D intro + background"]
+    end
+    subgraph Server["Node.js + Express (Application tier)"]
+        R["REST API router /api"]
+        V["Validation & error handler"]
+        S["IdeaStore<br/>links, backlinks, suggestions, spark"]
+        L["links.js<br/>wikilink parsing"]
+    end
+    subgraph Data["Persistence tier"]
+        F[("data/ideas.json<br/>atomic writes")]
+    end
+    UI --> APPJS
+    APPJS --> MD
+    APPJS --> GR
+    UI --> MO
+    UI --> SC
+    APPJS -- "HTTP/JSON (fetch)" --> R
+    R --> V --> S
+    S --> L
+    S -- "read / write" --> F
